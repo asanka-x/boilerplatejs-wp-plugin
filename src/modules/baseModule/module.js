@@ -4,7 +4,7 @@ define(['Boiler', './mainMenu/component', './language/component', './theme/compo
 		var context = new Boiler.Context(globalContext);
 
 		//scoped DomController that will be effective only on $('#page-content')
-		var controller = new Boiler.DomController($('#page-content'));
+		var controller = new Boiler.DomController($('body'));
 		//add routes with DOM node selector queries and relavant components
 		controller.addRoutes({
 			".main-menu" : new MainMenuComponent(context),
