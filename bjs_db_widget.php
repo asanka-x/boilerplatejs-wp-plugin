@@ -9,17 +9,46 @@ function bjs_db_widget() {
 function bjs_db_widget_display() {
 	echo "<strong>Page Title</strong></br>";
 
-	/*
+	echo '
 	 <input type="text" name="menu_title" value="">
 	 <select name="selected_component">
-	 <option value='<section class="main-menu"></section>' <?php selected($bjs_selected_component, '<section class="main-menu"></section>'); ?>>Menu</option>
-	 <option>Departments</option>
-	 <option>Counter</option>
+	 <option value="0">Menu</option>
+	 <option value="1">Departments</option>
+	 <option value="2">Counter</option>
 	 </select>
-	 <input type="button" name="create_page" value="Create" onClick=""/>
-	 */
-	//Stucked here
+	 <input type="submit" name="bjs_component_add" value="Create Page" class="button-primary" onclick="createPage()"/>
+	 ';
 }
+?>
+<!--JavaScript function to send an AJAX request-->
+<script type="text/javascript">
+	function createPage(){
+		var data={
+			action: 'my_action',
+			menu_item_name: document.getElementsByName('menu_title')[0].value,
+			selected_component: document.getElementsByName('selected_component')[0].value
+		};
+		
+		$.post(ajaxurl, data,function(response){
+			alert("Received");
+		});
+	}
+</script>
+
+<?php
+//Handling the AJAX request
+add_action('wp_ajax_my_action', 'bjs_wp_ajax_my_action');
+
+function bjs_wp_ajax_my_action(){
+	$ui_component_tags=array(
+		'0'=>'<section class="main-menu"></section>',
+		'1'=>'<section class="departments"></section>',
+		'2'=>'<section class="clickcounter"></section>'
+	);
+	bjs_page_create($_POST['menu_item_name'], $ui_component_tags[$_POST['selected_component']]);
+	die();
+}
+
 
 //add_action('save_post', 'submit_form_data');
 

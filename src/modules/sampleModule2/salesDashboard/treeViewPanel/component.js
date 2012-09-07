@@ -1,7 +1,7 @@
-define([ 'Boiler', 'text!./view.html', 'text!./style.css'],function( Boiler, viewText, styleText) {
+define([ 'Boiler', 'text!./view.html', 'text!./style.css'],function( Boiler, viewText, style) {
 	
 	var Component = function(parent) {
-		new Boiler.ViewTemplate(parent, viewText, null, styleText);
+		new Boiler.ViewTemplate(parent, viewText, null, style);
 	};
 	
 	return Component;

@@ -22,7 +22,7 @@ function bjs_mb_function() {
 	}
 
 add_action('save_post', 'bjs_mb_save_meta');
-add_filter('the_content', 'bjs_mb_add_content');
+//add_filter('the_content', 'bjs_mb_add_content');
 
 function bjs_mb_save_meta($postid) {
 

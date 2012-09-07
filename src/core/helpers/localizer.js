@@ -35,11 +35,6 @@ define(['./storage'], function(Storage) {
 	@return {String} localized text
 	**/
 	Localizer.localize = function(text, nlsObject) {
-		
-		if(!nlsObject) {
-			return text;
-		}
-		
 		var compiled = _.template(text);
 		return compiled({
 			nls : nlsObject

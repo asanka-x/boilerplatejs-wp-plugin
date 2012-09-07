@@ -9,10 +9,10 @@
 	 @param {Object} viewTemplate
 	 @param {Object} parentEl
 	 @param {Object} nls
-	 @param {object} styleText
+	 @param {object} style
 	 **/
-	var ViewTemplate = function(parent, viewTemplate, nls, styleText) {
-		this.createView(parent, viewTemplate, nls, styleText);
+	var ViewTemplate = function(parent, viewTemplate, nls, style) {
+		this.createView(parent, viewTemplate, nls, style);
 	};
 
 	/**
@@ -21,10 +21,10 @@
 
 	 @method setStyleText
 	 @param styleId {String} uniqueId for the style tag
-	 @param styleText {String} CSS text as a string
+	 @param style {String} CSS text as a string
 	 **/
-	ViewTemplate.setStyleText = function(styleId, styleText) {
-		Helpers.Styler.attachCssText(styleId, styleText);
+	ViewTemplate.setStyleText = function(styleId, style) {
+		Helpers.Styler.attachCssText(styleId, style);
 	};
 
 	/**
@@ -32,11 +32,11 @@
 	 If a link tag exists with the given linkId, href will be replaced.
 
 	 @method setStyleLink
-	 @param href {String} URL to the CSS file
 	 @param linkId {String} uniqueId for the link tag
+	 @param href {String} URL to the CSS file
 	 **/
-	ViewTemplate.setStyleLink = function(href,linkId) {
-		Helpers.Styler.attachCssLink(href, linkId);
+	ViewTemplate.setStyleLink = function(linkId, href) {
+		Helpers.Styler.attachCssLink(linkId, href);
 	};
 
 	/**
@@ -102,12 +102,18 @@
 	 **/
 	ViewTemplate.prototype.createView = function(parentElement, viewText, nls, styleText) {
 		//apply localization on the template
-		viewText = Helpers.Localizer.localize(viewText, nls);
+		if (nls) {
+			viewText = Helpers.Localizer.localize(viewText, nls);
+		}
 
+		if (!styleText) {
+			styleText = "";
+		} else {
+			styleText = "<style type='text/css' scoped='scoped'>" + styleText + "</style>";
+		}
 		// create a random id for the child and create a new element
 		this.viewId = _.uniqueId(['bpjscontainer_']);
-		this.jQueryElement = $("<span id='" + this.viewId + "'>" + viewText + "</span>");
-		Helpers.Styler.attachScopedCss(this.jQueryElement, styleText);
+		this.jQueryElement = $("<span id='" + this.viewId + "'>" + styleText + viewText + "</span>");
 
 		//if parent is specified, lets attach the element to parent
 		if (parentElement) {
