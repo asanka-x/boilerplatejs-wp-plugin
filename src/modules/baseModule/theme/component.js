@@ -1,47 +1,41 @@
-define(['require', 'Boiler', 'text!./view.html', 'path!./red/common.css', 'path!./gray/common.css'], function(require, Boiler, template, redTheme, grayTheme) {
+define(['Boiler', 'text!./view.html'], function(Boiler, template) {
 
 	/**
 	 * Lets define the themes we have in the system. We use CSS text to import appropriate
 	 * CSS file when the theme is requested.
 	 */
 	var themes = {
-		red : redTheme,
-		gray : grayTheme
+		red : './src/modules/baseModule/theme/red/common.css',
+		gray : './src/modules/baseModule/theme/gray/common.css'
 	};
 
-	var Component = function(moduleContext) {
-		//unique key of this sub-module to be used when necessary
-		var THEME_UNIQUE_KEY = "themeStylesheet";
-		
-		var panel = null;
+	var RouteHandler = function(moduleContext) {
+
+		var panel = null, DICTIONARY_KEY = "themeStylesheet";
 
 		return {
-			//this is the method that will be called by the handler
 			activate : function(parent) {
+				//create the theme selection component
 				panel = new Boiler.ViewTemplate(parent, template, null);
 
 				//if we have a stored theme setting lest use it OR use default
-				var storedThemeKey = moduleContext.retreiveObject(THEME_UNIQUE_KEY);
+				var storedThemeKey = moduleContext.retreiveObject(DICTIONARY_KEY);
 				if (!storedThemeKey) {
-					storedThemeKey = "gray";//default
+					//if not locally stored, use the default
+					storedThemeKey = "gray";
 				}
 
 				//lets use the panel to set style in header
-				Boiler.ViewTemplate.setStyleLink(THEME_UNIQUE_KEY, themes[storedThemeKey]);
-				//set the current theme selected on the select box
-				$(".theme select").val(storedThemeKey);
+				Boiler.ViewTemplate.setStyleLink(themes[storedThemeKey], DICTIONARY_KEY);
 
-				//lets handle the theme change event from the select
-				$(".theme select").change(function() {
-					var selection = $(".theme option:selected").val();
-					//read the selected value
-					css = themes[selection];
+				//lets handle the theme change event
+				$("#theme-selector a").bind("click", function() {
+					var selection = this.text.toLowerCase();
 					//set style in header
-					Boiler.ViewTemplate.setStyleLink(THEME_UNIQUE_KEY, css);
+					Boiler.ViewTemplate.setStyleLink(themes[selection], DICTIONARY_KEY);
 					//sale in the local store
-					moduleContext.persistObject(THEME_UNIQUE_KEY, selection);
-				});
-
+					moduleContext.persistObject(DICTIONARY_KEY, selection);
+				})
 			},
 
 			deactivate : function() {
@@ -52,6 +46,6 @@ define(['require', 'Boiler', 'text!./view.html', 'path!./red/common.css', 'path!
 		};
 	};
 
-	return Component;
+	return RouteHandler;
 
 });

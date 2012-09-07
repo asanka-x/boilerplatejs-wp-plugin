@@ -3,7 +3,7 @@
  Plugin Name: BoilerplateJS
  Plugin URI: http://boilerplatejs.org/
  Description: Drop your .js and .css files in the plugin directory and this plugin takes care of the rest, with zero configuration.
- Version: 0.1
+ Version: 0.9a
  License: GPL
  Author: BoilerplateJS
  Author URI: http://boilerplatejs.org
