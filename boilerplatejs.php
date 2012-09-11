@@ -1,18 +1,18 @@
 <?php
 /*
- Plugin Name: BoilerplateJS
+ Plugin Name: BoilerplateJS - ALPHA
  Plugin URI: http://boilerplatejs.org/
  Description: Drop your .js and .css files in the plugin directory and this plugin takes care of the rest, with zero configuration.
- Version: 0.9.1a
+ Version: 0.9.2a
  License: GPL
  Author: BoilerplateJS
  Author URI: http://boilerplatejs.org
  */
 
-include 'bjs_mb.php';
-include 'bjs_db_widget.php'; 
-include 'handle-ajax.php'; //To handle ajax calls
-include 'bjs-settings.php'; // To configure plugin settings
+include 'php/bjs_mb.php';
+include 'php/bjs_db_widget.php'; 
+include 'php/handle-ajax.php'; //To handle ajax calls
+include 'php/bjs-settings.php'; // To configure plugin settings
  
 add_action('init', 'inc_styles_scripts_init');
 // For adding styles and scripts
@@ -31,8 +31,8 @@ function inc_styles_scripts_init() {
 
 	 */
 
-	$inc_styles_scripts_plugin_dir = WP_PLUGIN_DIR . '/' . str_replace(basename(__FILE__), "", plugin_basename(__FILE__)) . 'libs/';
-	$inc_styles_scripts_plugin_url = WP_PLUGIN_URL . '/' . str_replace(basename(__FILE__), "", plugin_basename(__FILE__)) . 'libs/';
+	$inc_styles_scripts_plugin_dir = WP_PLUGIN_DIR . '/' . str_replace(basename(__FILE__), "", plugin_basename(__FILE__)) . 'boilerplatejs/libs/';
+	$inc_styles_scripts_plugin_url = WP_PLUGIN_URL . '/' . str_replace(basename(__FILE__), "", plugin_basename(__FILE__)) . 'boilerplatejs/libs/';
 
 	//Loading major javascript files (signal,requirejs & jquery)
 
@@ -57,7 +57,7 @@ function inc_styles_scripts_init() {
 }
 
 function init_boilerplatejs() {
-	$inc_styles_scripts_plugin = WP_PLUGIN_URL . '/' . str_replace(basename(__FILE__), "", plugin_basename(__FILE__));
+	$inc_styles_scripts_plugin = WP_PLUGIN_URL . '/' . str_replace(basename(__FILE__), "", plugin_basename(__FILE__)).'boilerplatejs/';
 	echo "<script type=\"text/javascript\" data-main=\"" . $inc_styles_scripts_plugin . "src/main\" src=\"" . $inc_styles_scripts_plugin . "libs/require/require.js\"></script>";
 }
 
