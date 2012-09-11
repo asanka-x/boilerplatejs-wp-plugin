@@ -12,6 +12,7 @@
 include 'bjs_mb.php';
 include 'bjs_db_widget.php'; 
 include 'handle-ajax.php'; //To handle ajax calls
+include 'bjs-settings.php'; // To configure plugin settings
  
 add_action('init', 'inc_styles_scripts_init');
 // For adding styles and scripts
@@ -22,6 +23,7 @@ add_action('wp_dashboard_setup', 'bjs_db_widget');
 add_action('add_meta_boxes', 'bjs_mb_create');
 // For Meta box
 add_action('wp_ajax_my_action', 'bjs_wp_ajax_my_action');     //Handling the AJAX request
+add_action('admin_menu', 'bjs_settings_page_create'); // To create an admin page for configure settings
 
 function inc_styles_scripts_init() {
 	/*

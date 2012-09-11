@@ -27,19 +27,17 @@ function bjs_mb_function() {
 	 </select>
 	 <input type="submit" name="bjs_mb_component_add" value="Add" class="button-primary" onclick="addComponent()"/>
 	 ';
+
+	//bjs_page_update(456, 'Testing content');
 }
 
 function bjs_page_update($post_id_t, $page_content) {
 	global $post;
 	$post_id = $post -> ID;
 	$modified_page = array();
-	$modified_page['ID'] = $post_id_t;
-	$modified_page['post_type'] = 'page';
-	//could be 'page' for example
-	$modified_page['post_content'] = $page_content;
-	$modified_page['post_status'] = 'publish';
-	//draft
-	$modified_page['post_title'] ='fftitle';
+	$modified_page['ID'] = $post_id;
+	$modified_page['post_content'] = 'Testing!!!!!!';
+
 	$postid = wp_update_post($modified_page);
 	if ($postid == 0)
 		echo 'Screwed';
@@ -47,39 +45,35 @@ function bjs_page_update($post_id_t, $page_content) {
 		echo 'Cool';
 }
 
-//add_action('save_post', 'bjs_mb_save_meta');
-//add_filter('the_content', 'bjs_mb_add_content');
+add_action('save_post', 'bjs_mb_save_meta');
 
-function bjs_mb_save_meta($postid) {
-
-	if (isset($_POST['bjs_mb_page_content'])) {
-		update_post_meta($postid, '_bjs_mb_page_content', strip_tags($_POST['bjs_mb_page_content']));
-	}
-
+function bjs_mb_save_meta() {
+	/*
+	 if (isset($_POST['bjs_mb_page_content'])) {
+	 update_post_meta($postid, '_bjs_mb_page_content', strip_tags($_POST['bjs_mb_page_content']));
+	 }
+	 */
+	//bjs_page_update(456, 'Testing DDDDDDD');
 }
 
-function bjs_mb_add_content($content) {
-	$content = '<section class="main-menu"></section>';
-	//$content=$_POST['bjs_mb_page_content'];
-	return $content;
-}
 ?>
 
 <!--JavaScript function to send an AJAX request-->
 <script type="text/javascript">
 	function addComponent() {
 		var data = {
-			action: 'my_action',
-			sender: 'bjs_mb',
-			post_id: document.getElementsByName('cur_post_id')[0].value,
-			selected_component: document.getElementsByName('mb_selected_component')[0].value
+			action : 'my_action',
+			sender : 'bjs_mb',
+			post_id : document.getElementsByName('cur_post_id')[0].value,
+			selected_component : document.getElementsByName('mb_selected_component')[0].value
 		};
-		
+
 		console.log(data.action);
 		console.log(data.post_id);
 		console.log(data.selected_component);
-		$.post(ajaxurl, data, function(response) {
-			console.log("Page Updated");
-		});
+		//$.post(ajaxurl, data, function(response) {
+			//console.log("Page Updated");
+		//});
+		document.getElementsByName('content')[0].value=document.getElementsByName('content')[0].value+'<section class="main-menu"></section>';
 	}
 </script>
