@@ -10,10 +10,12 @@
  */
 
 include 'php/bjs_mb.php';
-include 'php/bjs_db_widget.php'; 
-include 'php/handle-ajax.php'; //To handle ajax calls
-include 'php/bjs-settings.php'; // To configure plugin settings
- 
+include 'php/bjs_db_widget.php';
+include 'php/handle-ajax.php';
+//To handle ajax calls
+include 'php/bjs-settings.php';
+// To configure plugin settings
+
 add_action('init', 'inc_styles_scripts_init');
 // For adding styles and scripts
 add_action('wp_footer', 'init_boilerplatejs', 100);
@@ -22,17 +24,26 @@ add_action('wp_dashboard_setup', 'bjs_db_widget');
 // For widget
 add_action('add_meta_boxes', 'bjs_mb_create');
 // For Meta box
-add_action('wp_ajax_my_action', 'bjs_wp_ajax_my_action');     //Handling the AJAX request
-add_action('admin_menu', 'bjs_settings_page_create'); // To create an admin page for configure settings
+add_action('wp_ajax_my_action', 'bjs_wp_ajax_my_action');
+//Handling the AJAX request
+add_action('admin_menu', 'bjs_settings_page_create');
+// To create an admin page for configure settings
+
+// global variables
+$bjs_base_plugin_dir = WP_PLUGIN_DIR . '/' . str_replace(basename(__FILE__), "", plugin_basename(__FILE__)) ;
+$bjs_base_plugin_url = WP_PLUGIN_URL . '/' . str_replace(basename(__FILE__), "", plugin_basename(__FILE__)) ;
 
 function inc_styles_scripts_init() {
+	
+	global $bjs_base_plugin_dir;
+	global $bjs_base_plugin_url;
+	
+	$inc_styles_scripts_plugin_dir=$bjs_base_plugin_dir.'boilerplatejs/libs/';
+	$inc_styles_scripts_plugin_url=$bjs_base_plugin_url.'boilerplatejs/libs/';
 	/*
 	 basename(__FILE__); Returns index.php
 
 	 */
-
-	$inc_styles_scripts_plugin_dir = WP_PLUGIN_DIR . '/' . str_replace(basename(__FILE__), "", plugin_basename(__FILE__)) . 'boilerplatejs/libs/';
-	$inc_styles_scripts_plugin_url = WP_PLUGIN_URL . '/' . str_replace(basename(__FILE__), "", plugin_basename(__FILE__)) . 'boilerplatejs/libs/';
 
 	//Loading major javascript files (signal,requirejs & jquery)
 
@@ -57,8 +68,8 @@ function inc_styles_scripts_init() {
 }
 
 function init_boilerplatejs() {
-	$inc_styles_scripts_plugin = WP_PLUGIN_URL . '/' . str_replace(basename(__FILE__), "", plugin_basename(__FILE__)).'boilerplatejs/';
-	echo "<script type=\"text/javascript\" data-main=\"" . $inc_styles_scripts_plugin . "src/main\" src=\"" . $inc_styles_scripts_plugin . "libs/require/require.js\"></script>";
+	global $bjs_base_plugin_url;	
+	$inc_styles_scripts_plugin_url=$bjs_base_plugin_url.'boilerplatejs/';
+	echo "<script type=\"text/javascript\" data-main=\"" . $inc_styles_scripts_plugin_url . "src/main\" src=\"" . $inc_styles_scripts_plugin_url . "libs/require/require.js\"></script>";
 }
-
 ?>

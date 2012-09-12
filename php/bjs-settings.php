@@ -1,5 +1,7 @@
 <?php
 
+include "bjs-settings-uploader.php";
+
 add_action('admin_init', 'bjs_settings_admin_init');
 
 function bjs_settings_page_create(){
