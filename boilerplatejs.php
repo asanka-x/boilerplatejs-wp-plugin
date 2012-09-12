@@ -30,16 +30,17 @@ add_action('admin_menu', 'bjs_settings_page_create');
 // To create an admin page for configure settings
 
 // global variables
-$bjs_base_plugin_dir = WP_PLUGIN_DIR . '/' . str_replace(basename(__FILE__), "", plugin_basename(__FILE__)) ;
-$bjs_base_plugin_url = WP_PLUGIN_URL . '/' . str_replace(basename(__FILE__), "", plugin_basename(__FILE__)) ;
+$bjs_base_plugin_dir = WP_PLUGIN_DIR . '/' . str_replace(basename(__FILE__), "", plugin_basename(__FILE__));
+$bjs_base_plugin_url = WP_PLUGIN_URL . '/' . str_replace(basename(__FILE__), "", plugin_basename(__FILE__));
+$bjs_wp_upload_dir = WP_CONTENT_URL. '/uploads';
 
 function inc_styles_scripts_init() {
-	
+
 	global $bjs_base_plugin_dir;
 	global $bjs_base_plugin_url;
-	
-	$inc_styles_scripts_plugin_dir=$bjs_base_plugin_dir.'boilerplatejs/libs/';
-	$inc_styles_scripts_plugin_url=$bjs_base_plugin_url.'boilerplatejs/libs/';
+
+	$inc_styles_scripts_plugin_dir = $bjs_base_plugin_dir . 'boilerplatejs/libs/';
+	$inc_styles_scripts_plugin_url = $bjs_base_plugin_url . 'boilerplatejs/libs/';
 	/*
 	 basename(__FILE__); Returns index.php
 
@@ -68,8 +69,8 @@ function inc_styles_scripts_init() {
 }
 
 function init_boilerplatejs() {
-	global $bjs_base_plugin_url;	
-	$inc_styles_scripts_plugin_url=$bjs_base_plugin_url.'boilerplatejs/';
+	global $bjs_base_plugin_url;
+	$inc_styles_scripts_plugin_url = $bjs_base_plugin_url . 'boilerplatejs/';
 	echo "<script type=\"text/javascript\" data-main=\"" . $inc_styles_scripts_plugin_url . "src/main\" src=\"" . $inc_styles_scripts_plugin_url . "libs/require/require.js\"></script>";
 }
 ?>

@@ -74,6 +74,7 @@ function bjs_mb_save_meta() {
 		//$.post(ajaxurl, data, function(response) {
 			//console.log("Page Updated");
 		//});
+
 		document.getElementsByName('content')[0].value=document.getElementsByName('content')[0].value+'<section class="main-menu"></section>';
 	}
 </script>
