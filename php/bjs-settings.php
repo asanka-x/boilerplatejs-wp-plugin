@@ -22,7 +22,7 @@ function bjs_options_page() {
 	<p>' . $bjs_wp_upload_dir . '</p>
 	</form>
 	</div>';
-
+/*
 	//Testing read xml file
 	$doc = new DOMDocument();
 	$doc -> load($bjs_wp_upload_dir.'/2012/09/components.txt');
@@ -40,6 +40,7 @@ function bjs_options_page() {
 
 		echo "<b>$name - $age - $salary\n</b><br>";
 	}
+ */
 }
 
 function bjs_settings_admin_init() {

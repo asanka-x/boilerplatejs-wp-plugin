@@ -19,9 +19,11 @@ define(["Boiler", "./settings", "./modules/modules"], function(Boiler, settings,
 	 * @class Application
 	 * @constructor
 	 **/
-	var Application = function() {
+	var Application = function(apiAccessToken) {
 		//Create our root context instance
 		var appContext = new Boiler.Context();
+		//lets add access token as a setting to global context
+        appContext.addSettings({ accessToken: apiAccessToken });
 		//now lets add global settings
 		appContext.addSettings(settings);
 		//here we load the sub modules of the global context

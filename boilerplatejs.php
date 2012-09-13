@@ -48,7 +48,21 @@ function inc_styles_scripts_init() {
 
 	//Loading major javascript files (signal,requirejs & jquery)
 
-	$major_inc_handlers = array(0 => array('handler' => 'inc-script-jquery', 'path' => 'jquery/jquery-min.js'), 1 => array('handler' => 'inc-script-knockout', 'path' => 'knockout/knockout-2.1.0pre.js'), 2 => array('handler' => 'inc-script-underscore', 'path' => 'underscore/underscore-1.3.3.js'), 3 => array('handler' => 'inc-script-signals', 'path' => 'signals/signals.min.js'), 4 => array('handler' => 'inc-script-crossroads', 'path' => 'crossroads/crossroads.min.js'), 5 => array('handler' => 'inc-script-hasher', 'path' => 'hasher/hasher.min.js'), 6 => array('handler' => 'inc-script-pubsub', 'path' => 'pubsub/pubsub-20120708.js'), 7 => array('handler' => 'inc-script-jstree', 'path' => 'jquery/jstree/jstree-1.0-rc3.js'), 8 => array('handler' => 'inc-script-flot-min', 'path' => 'flot/jquery.flot.min.js'), 9 => array('handler' => 'inc-script-flot-resize', 'path' => 'flot/jquery.flot.resize.js'), 10 => array('handler' => 'inc-script-amplifystore', 'path' => 'amplifystore/amplify.store.min.1.1.0.js'));
+	$major_inc_handlers = array(
+	0 => array('handler' => 'inc-script-jquery', 'path' => 'jquery/jquery-min.js'), 
+	1 => array('handler' => 'inc-script-knockout', 'path' => 'knockout/knockout-2.1.0pre.js'), 
+	2 => array('handler' => 'inc-script-underscore', 'path' => 'underscore/underscore-1.3.3.js'), 
+	3 => array('handler' => 'inc-script-signals', 'path' => 'signals/signals.min.js'), 
+	4 => array('handler' => 'inc-script-crossroads', 'path' => 'crossroads/crossroads.min.js'), 
+	5 => array('handler' => 'inc-script-hasher', 'path' => 'hasher/hasher.min.js'), 
+	6 => array('handler' => 'inc-script-pubsub', 'path' => 'pubsub/pubsub-20120708.js'), 
+	7 => array('handler' => 'inc-script-jstree', 'path' => 'jquery/jstree/jstree-1.0-rc3.js'), 
+	8 => array('handler' => 'inc-script-flot-min', 'path' => 'flot/jquery.flot.min.js'), 
+	9 => array('handler' => 'inc-script-flot-resize', 'path' => 'flot/jquery.flot.resize.js'), 
+	10 => array('handler' => 'inc-script-amplifystore', 'path' => 'amplifystore/amplify.store.min.1.1.0.js'),
+	11 => array('handler' => 'inc-script-jso', 'path' => 'jso/jso.js'),
+	12 => array('handler' => 'inc-script-hattland', 'path' => 'jso/login.js')
+	);
 
 	for ($i = 0; $i < count($major_inc_handlers); $i++) {
 		wp_register_script($major_inc_handlers[$i]['handler'], $inc_styles_scripts_plugin_url . '' . $major_inc_handlers[$i]['path']);

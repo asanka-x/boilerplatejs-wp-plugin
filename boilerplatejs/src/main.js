@@ -15,7 +15,8 @@ require.config({
 		domReady : '../libs/require/domReady',
 		path :  '../libs/require/path',
 		// namespace that aggregate core classes that are in frequent use
-		Boiler : './core/_boiler_'
+		Boiler : './core/_boiler_',
+		_hatteland_ : './util/_hatteland_'
 	}
 });
 
@@ -42,6 +43,9 @@ require([ "./application", "domReady" ], function( Application, domReady) {
 		 * as classes for OO programming. So below we create an instance by
 		 * calling 'new' operator on that function.
 		 */
-		new Application();
+		
+		var hash = window.location.href;
+    	var accessToken = hash.substring(1).split("&")[0].split("=")[1];
+		new Application(accessToken);
 	});
 });

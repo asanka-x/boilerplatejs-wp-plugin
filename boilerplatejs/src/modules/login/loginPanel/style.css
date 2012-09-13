@@ -1,0 +1,47 @@
+div.page {
+	margin-left: auto;
+	margin-right: auto;
+	width: 1450px;
+}
+div.container {
+	float: left;
+	background-image: url(images/bg_logincenteredge.jpg);
+	background-position: top right;
+	background-repeat: no-repeat;
+	width: 1000px;
+	padding: 44px 45px 20px 10px;
+}
+div.login {
+	float: right;
+	width: 300px;
+	background-image: url(images/bg_loginright.jpg);
+	background-position: top left;
+	background-repeat: no-repeat;
+	height: 500px;
+	padding: 20px 0px 0px 30px;
+}
+input.txt {
+	width: 240px;
+	height: 27px;
+	border: solid 2px #7d7d7d;
+	font-size: 17px;
+}
+input.btn {
+	width: 110px;
+	height: 31px;
+	background-color: #000;
+	border: none;
+	color: #FFF;
+	font-size: 17px;
+	font-weight: bold;
+	text-align: left;
+	padding-left: 15px;
+}
+
+h3 {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 18px;
+	color: #000;
+	font-weight: bold;
+	text-decoration: none
+}

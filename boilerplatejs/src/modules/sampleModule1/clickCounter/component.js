@@ -4,6 +4,7 @@ define(['Boiler', './viewmodel', 'text!./view.html'], function(Boiler, ViewModel
 
 		var vm, panel = null;
 
+		
 		this.activate = function(parent, params) {
 			if (!panel) {
 				panel = new Boiler.ViewTemplate(parent, template, null);
@@ -11,18 +12,17 @@ define(['Boiler', './viewmodel', 'text!./view.html'], function(Boiler, ViewModel
 				ko.applyBindings(vm, panel.getDomElement());
 			}
 			panel.show();
-			
+
 		}
 
 		this.deactivate = function() {
-			if(panel) {
+			if (panel) {
 				panel.hide();
 			}
-			
-		}
 
+		}
 	};
 
 	return Component;
 
-}); 
+});

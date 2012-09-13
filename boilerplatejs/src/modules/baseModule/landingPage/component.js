@@ -14,6 +14,7 @@ define(['Boiler', 'text!./view.html'], function(Boiler, template) {
 				panel.hide();
 			}
 		}
+		
 	};
 
 	return Component;

@@ -9,7 +9,9 @@ define(function(require) {
 	return [
         require('./baseModule/module'),
 		require('./sampleModule1/module'),
-        require('./sampleModule2/module')
+        require('./sampleModule2/module'),
+        require('./customerModule/module'),
+        require('./login/module')
 	];
 
 });

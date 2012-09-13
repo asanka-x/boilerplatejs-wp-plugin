@@ -5,6 +5,7 @@ define([], function () {
 	 
 	    this.registerClick = function() {
 	        this.numberOfClicks(this.numberOfClicks() + 1);
+	        moduleContext.notify("ACTIVATE_MESSAGE",5);
 	    };
 	 
 	    this.resetClicks = function() {

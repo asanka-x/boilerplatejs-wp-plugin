@@ -1,16 +1,18 @@
-define(['Boiler', 'text!./view.html','text!./style.css', './viewmodel'], function(Boiler, template, style,  ViewModel) {
+define(['Boiler', 'text!./view.html', 'text!./style.css', './viewmodel'], function(Boiler, template, styleText, ViewModel) {
 
 	var Component = function(moduleContext) {
-
+		moduleContext.listen("ACTIVATE_MESSAGE", function(data) {
+			alert(data);
+		});
 		var vm, panel = null;
 
 		this.activate = function(parent, params) {
 			if (!panel) {
 				vm = new ViewModel(moduleContext, params.id);
-				panel = new Boiler.ViewTemplate(parent, template, null, style);
+				panel = new Boiler.ViewTemplate(parent, template, null, styleText);
 				ko.applyBindings(vm, panel.getDomElement());
 			}
-			
+
 			vm.setEmployee(params.id);
 			panel.show();
 		}

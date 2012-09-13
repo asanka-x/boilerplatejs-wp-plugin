@@ -1,0 +1,22 @@
+<div>
+  <table id="table-salesinfo">
+   <thead>
+    <tr>
+     <th scope="col">Customer No</th>
+     <th scope="col">Name</th>
+     <th scope="col">City</th>
+    </tr>
+   </thead>
+
+   <!-- Table body -->
+
+   <tbody data-bind="foreach:customers">
+    <tr>
+     <td data-bind="text: customerNo"></td>
+     <td style="text-align: left" data-bind="text: lastName"></td>
+     <td style="text-align: left" data-bind="text: city"></td>
+    </tr>
+   </tbody>
+
+  </table>
+</div>
